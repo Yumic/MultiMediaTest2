@@ -1,10 +1,20 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context="yumic.diverbob.love.multimediatest2.MainActivity">
+    tools:context=".Activity.MainActivity">
     <item
-        android:id="@+id/action_settings"
+        android:id="@+id/action_browse_video"
         android:orderInCategory="100"
-        android:title="@string/action_settings"
+        android:title="@string/action_browse_video"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/action_browse_music"
+        android:orderInCategory="100"
+        android:title="@string/action_browse_music"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/action_browse_photo"
+        android:orderInCategory="100"
+        android:title="@string/action_browse_photo"
         app:showAsAction="never" />
 </menu>

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="@dimen/item_horizontal_margin"
+    android:layout_marginRight="@dimen/item_horizontal_margin"
+    android:layout_marginTop="@dimen/item_vertical_margin"
+    android:layout_marginBottom="@dimen/item_vertical_margin">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Hymn for the weekend"
+        android:id="@+id/textViewTitle"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="Coldplay"
+        android:id="@+id/textViewArtist"
+        android:layout_below="@+id/textViewTitle"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="-"
+        android:id="@+id/textViewDivider"
+        android:layout_alignBottom="@+id/textViewArtist"
+        android:layout_toRightOf="@+id/textViewArtist"
+        android:layout_toEndOf="@+id/textViewArtist"
+        android:layout_marginLeft="@dimen/item_horizontal_margin"
+        android:layout_marginRight="@dimen/item_horizontal_margin"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="A Head Full of Dreams"
+        android:id="@+id/textViewAlbum"
+        android:layout_alignTop="@+id/textViewDivider"
+        android:layout_toRightOf="@+id/textViewDivider"
+        android:layout_toEndOf="@+id/textViewDivider" />
+</RelativeLayout>

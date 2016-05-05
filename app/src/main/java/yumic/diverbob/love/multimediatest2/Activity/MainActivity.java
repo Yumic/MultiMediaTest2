@@ -1,7 +1,8 @@
-package yumic.diverbob.love.multimediatest2;
+package yumic.diverbob.love.multimediatest2.Activity;
 
 import android.app.ActionBar;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -20,6 +21,16 @@ import android.widget.ExpandableListView;
 import android.widget.PopupWindow;
 import android.widget.Spinner;
 
+import java.util.List;
+
+import yumic.diverbob.love.multimediatest2.AbstructProvider;
+import yumic.diverbob.love.multimediatest2.ListDao;
+import yumic.diverbob.love.multimediatest2.MyExpandableListViewAdapter;
+import yumic.diverbob.love.multimediatest2.R;
+import yumic.diverbob.love.multimediatest2.Utils.PermissionUtil;
+import yumic.diverbob.love.multimediatest2.Video;
+import yumic.diverbob.love.multimediatest2.VideoProvider;
+
 public class MainActivity extends AppCompatActivity {
     public static final String TAG ="MainActivity.java";
         private ExpandableListView expandableListView;
@@ -34,6 +45,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        PermissionUtil.checkAndRequestPermissions(this);
         context = this;
         listDao = new ListDao(context);
 
@@ -75,8 +87,6 @@ public class MainActivity extends AppCompatActivity {
 
                 String listName = editText.getText().toString();
                 if(listName.equals("")){
-
-
                 }else{
                     String category = (String) spinner.getSelectedItem();
                     listDao.insertList(category,listName);//向数据库插入
@@ -139,7 +149,17 @@ public class MainActivity extends AppCompatActivity {
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+        if (id == R.id.action_browse_video) {
+            AbstructProvider provider = new VideoProvider(this);
+            List<Video> listVideos = provider.getAllList();
+            return true;
+        }
+        if (id == R.id.action_browse_music) {
+            Intent intent = new Intent(MainActivity.this,MusicBrowserActivity.class);
+            startActivity(intent);
+            return true;
+        }
+        if (id == R.id.action_browse_photo) {
             return true;
         }
 
