@@ -8,32 +8,36 @@ import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ExpandableListView;
 import android.widget.PopupWindow;
 import android.widget.Spinner;
-import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
-
-    private ExpandableListView expandableListView;
+    public static final String TAG ="MainActivity.java";
+        private ExpandableListView expandableListView;
     private MyExpandableListViewAdapter adapter;
     private Toolbar toolbar;
 
     private Context context = null;
+    private ListDao listDao = null;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         context = this;
+        listDao = new ListDao(context);
+
+
         initExpandableList();
 
         toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -59,25 +63,27 @@ public class MainActivity extends AppCompatActivity {
         popupWindow.setBackgroundDrawable(new ColorDrawable(Color.WHITE));//设置背景颜色
 
         final Spinner spinner = (Spinner) contentView.findViewById(R.id.spinner);
-        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
-        });
         Button buttonConfirm = (Button) contentView.findViewById(R.id.buttonConfirm);
         Button buttonCancel = (Button) contentView.findViewById(R.id.buttonCancel);
-        EditText editText = (EditText) contentView.findViewById(R.id.editText);
+        final EditText editText = (EditText) contentView.findViewById(R.id.editText);
 
 
         buttonConfirm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                String listName = editText.getText().toString();
+                if(listName.equals("")){
+
+
+                }else{
+                    String category = (String) spinner.getSelectedItem();
+                    listDao.insertList(category,listName);//向数据库插入
+                    Log.d(TAG,"文件名——"+listName+"类别——"+category);
+                    adapter.notifyDataSetChanged();
+                    popupWindow.dismiss();
+                }
 
             }
         });
@@ -97,6 +103,14 @@ public class MainActivity extends AppCompatActivity {
     private void initExpandableList() {
         expandableListView = (ExpandableListView) findViewById(R.id.expendlist);
         adapter = new MyExpandableListViewAdapter(context);
+
+
+        adapter.setItemToAdd(listDao.getList("视频"),0);
+        adapter.setItemToAdd(listDao.getList("音乐"),1);
+        adapter.setItemToAdd(listDao.getList("音乐"),2);
+
+        adapter.initList();
+
         expandableListView.setAdapter(adapter);
         //默认展开所有
         int groupCount = expandableListView.getCount();

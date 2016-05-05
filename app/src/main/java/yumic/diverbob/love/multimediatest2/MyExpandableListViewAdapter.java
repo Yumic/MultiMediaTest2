@@ -18,7 +18,13 @@ public class MyExpandableListViewAdapter extends BaseExpandableListAdapter {
     private Context context;
     private List<String> groupList;
     private List item[] = new ArrayList[3];
+    private List itemToAdd[] = new ArrayList[3];
     private List<List<String>> itemList;
+
+
+    public void setItemToAdd(List list,int category){
+        itemToAdd[category] = list;
+    }
 
     /**
      * 初始化适配器
@@ -32,8 +38,6 @@ public class MyExpandableListViewAdapter extends BaseExpandableListAdapter {
         groupList.add("音频");
         groupList.add("图片");
 
-
-
         item[0] = new ArrayList<String>();
         item[0].add("所有视频");
 
@@ -43,6 +47,8 @@ public class MyExpandableListViewAdapter extends BaseExpandableListAdapter {
         item[2] = new ArrayList<String>();
         item[2].add("所有图片");
 
+
+
         itemList = new ArrayList<List<String>>();
         itemList.add(item[0]);
         itemList.add(item[0]);
@@ -51,6 +57,18 @@ public class MyExpandableListViewAdapter extends BaseExpandableListAdapter {
 
     }
 
+
+    public void initList(){
+
+        for(int j = 0;j<3;j++){
+            if(itemToAdd[j]!=null){
+                for(int i = 0;i<itemToAdd[j].size();i++){
+                    item[j].add(itemToAdd[j].get(i));
+                }
+            }
+        }
+
+    }
     /**
      * 获取组的个数
      * @return
