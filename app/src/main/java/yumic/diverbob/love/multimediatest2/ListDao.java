@@ -115,6 +115,8 @@ public class ListDao {
                 List<String> list = new ArrayList<String>(cursor.getCount());
                 while (cursor.moveToNext()) {
                     String order = cursor.getString(cursor.getColumnIndex("listName"));
+
+                    Log.d("ListDao","类别："+category+"ListName"+order);
                     list.add(order);
                 }
                 return list;

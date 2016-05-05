@@ -1,6 +1,7 @@
 package yumic.diverbob.love.multimediatest2;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,6 +16,7 @@ import java.util.List;
  */
 public class MyExpandableListViewAdapter extends BaseExpandableListAdapter {
 
+    private static final String TAG = "MyExpandableListViewAdapter";
     private Context context;
     private List<String> groupList;
     private List item[] = new ArrayList[3];
@@ -47,12 +49,10 @@ public class MyExpandableListViewAdapter extends BaseExpandableListAdapter {
         item[2] = new ArrayList<String>();
         item[2].add("所有图片");
 
-
-
         itemList = new ArrayList<List<String>>();
         itemList.add(item[0]);
-        itemList.add(item[0]);
-        itemList.add(item[0]);
+        itemList.add(item[1]);
+        itemList.add(item[2]);
 
 
     }
@@ -62,6 +62,7 @@ public class MyExpandableListViewAdapter extends BaseExpandableListAdapter {
 
         for(int j = 0;j<3;j++){
             if(itemToAdd[j]!=null){
+
                 for(int i = 0;i<itemToAdd[j].size();i++){
                     item[j].add(itemToAdd[j].get(i));
                 }

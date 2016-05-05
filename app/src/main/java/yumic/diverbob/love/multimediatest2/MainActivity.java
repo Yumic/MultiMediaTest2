@@ -81,6 +81,8 @@ public class MainActivity extends AppCompatActivity {
                     String category = (String) spinner.getSelectedItem();
                     listDao.insertList(category,listName);//向数据库插入
                     Log.d(TAG,"文件名——"+listName+"类别——"+category);
+
+                    initData();
                     adapter.notifyDataSetChanged();
                     popupWindow.dismiss();
                 }
@@ -103,14 +105,7 @@ public class MainActivity extends AppCompatActivity {
     private void initExpandableList() {
         expandableListView = (ExpandableListView) findViewById(R.id.expendlist);
         adapter = new MyExpandableListViewAdapter(context);
-
-
-        adapter.setItemToAdd(listDao.getList("视频"),0);
-        adapter.setItemToAdd(listDao.getList("音乐"),1);
-        adapter.setItemToAdd(listDao.getList("音乐"),2);
-
-        adapter.initList();
-
+        initData();
         expandableListView.setAdapter(adapter);
         //默认展开所有
         int groupCount = expandableListView.getCount();
@@ -119,6 +114,14 @@ public class MainActivity extends AppCompatActivity {
         };
        // expandableListView.setGroupIndicator(null); //去掉ExpandableListView的默认箭头
        // expandableListView
+    }
+
+    void initData(){
+        adapter.setItemToAdd(listDao.getList("视频"),0);
+        adapter.setItemToAdd(listDao.getList("音频"),1);
+        adapter.setItemToAdd(listDao.getList("图片"),2);
+
+        adapter.initList();
     }
 
     @Override
