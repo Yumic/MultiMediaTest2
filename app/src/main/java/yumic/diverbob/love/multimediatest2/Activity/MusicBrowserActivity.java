@@ -16,13 +16,10 @@ import yumic.diverbob.love.multimediatest2.R;
  * Created by Oathkeeper on 2016/3/2.
  */
 public class MusicBrowserActivity extends Activity{
-    private int[] _ids;//存放音乐文件的id数组
-    private String[] _titles;//存放音乐文件的标题数组
-    private String[] _path;//存放音乐文件的路径
+
 
     private RecyclerView recyclerView;
 
-    private MultiSelector mMultiSelector = new MultiSelector();
 
     private MusicProvider musicProvider;
 

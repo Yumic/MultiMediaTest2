@@ -150,8 +150,9 @@ public class MainActivity extends AppCompatActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_browse_video) {
-            AbstructProvider provider = new VideoProvider(this);
-            List<Video> listVideos = provider.getAllList();
+
+            Intent intent = new Intent(MainActivity.this,VideoPlayerActivity.class);
+            startActivity(intent);
             return true;
         }
         if (id == R.id.action_browse_music) {

@@ -22,8 +22,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Activity.MusicBrowserActivity"></activity>
-        <activity android:name=".Activity.MusicPlayerActivity"></activity>
+        <activity android:name=".Activity.MusicBrowserActivity" />
+        <activity android:name=".Activity.MusicPlayerActivity" />
+        <activity android:name=".Activity.VideoPlayerActivity"></activity>
     </application>
 
 </manifest>

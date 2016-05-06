@@ -52,6 +52,7 @@ public class MusicPlayerActivity extends AppCompatActivity {
 
             nowNum = listNum;
             listCount = musicList.size();
+            mediaPlayer = new MediaPlayer();
         }
         playMusic(musicList.get(nowNum).getPath());
         initViews();
@@ -63,7 +64,7 @@ public class MusicPlayerActivity extends AppCompatActivity {
     private void playMusic(String path){
 
         try {
-            mediaPlayer = new MediaPlayer();
+
             mediaPlayer.setDataSource(path);
             mediaPlayer.prepare();
             mediaPlayer.start();
@@ -113,8 +114,7 @@ public class MusicPlayerActivity extends AppCompatActivity {
         buttonPre.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mediaPlayer.stop();
-                mediaPlayer.release();
+                mediaPlayer.reset();//重置为初始状态
                 isPlaying = false;
                 nowNum=nowNum-1;
                 if(nowNum<0) nowNum =nowNum+listCount;
@@ -127,8 +127,7 @@ public class MusicPlayerActivity extends AppCompatActivity {
         buttonNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mediaPlayer.stop();
-                mediaPlayer.release();
+                mediaPlayer.reset();//重置为初始状态
                 isPlaying = false;
                 nowNum=nowNum+1;
                 if(nowNum>=listCount) nowNum =nowNum-listCount;

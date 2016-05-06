@@ -1,14 +1,16 @@
 package yumic.diverbob.love.multimediatest2.Entities;
 
 import android.graphics.Bitmap;
+import android.os.Parcel;
+import android.os.Parcelable;
 
 import java.io.Serializable;
 
 /**
  * Created by Oathkeeper on 2016/5/5.
  */
-public class Video implements Serializable {
-    private static final long serialVersionUID = -7920222595800367956L;
+public class Video  implements Parcelable {
+
     private int id;
     private String title;
     private String album;
@@ -51,6 +53,31 @@ public class Video implements Serializable {
         this.size = size;
         this.duration = duration;
     }
+
+    protected Video(Parcel in) {
+        id = in.readInt();
+        title = in.readString();
+        album = in.readString();
+        artist = in.readString();
+        displayName = in.readString();
+        mimeType = in.readString();
+        path = in.readString();
+        size = in.readLong();
+        duration = in.readLong();
+        image = in.readParcelable(Bitmap.class.getClassLoader());
+    }
+
+    public static final Creator<Video> CREATOR = new Creator<Video>() {
+        @Override
+        public Video createFromParcel(Parcel in) {
+            return new Video(in);
+        }
+
+        @Override
+        public Video[] newArray(int size) {
+            return new Video[size];
+        }
+    };
 
     public int getId() {
         return id;
@@ -132,4 +159,22 @@ public class Video implements Serializable {
         this.image = image;
     }
 
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(id);
+        dest.writeString(title);
+        dest.writeString(album);
+        dest.writeString(artist);
+        dest.writeString(displayName);
+        dest.writeString(mimeType);
+        dest.writeString(path);
+        dest.writeLong(size);
+        dest.writeLong(duration);
+        dest.writeParcelable(image, flags);
+    }
 }
