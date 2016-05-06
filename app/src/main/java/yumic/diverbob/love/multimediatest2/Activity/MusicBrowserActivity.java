@@ -2,8 +2,11 @@ package yumic.diverbob.love.multimediatest2.Activity;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+
+import com.bignerdranch.android.multiselector.MultiSelector;
 
 import yumic.diverbob.love.multimediatest2.Adapter.MusicBrowserAdapter;
 import yumic.diverbob.love.multimediatest2.Providers.MusicProvider;
@@ -18,12 +21,20 @@ public class MusicBrowserActivity extends Activity{
     private String[] _path;//存放音乐文件的路径
 
     private RecyclerView recyclerView;
+
+    private MultiSelector mMultiSelector = new MultiSelector();
+
     private MusicProvider musicProvider;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_music_list);
+
+
+
         musicProvider = new MusicProvider(this);
         recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
         //设置布局管理器
@@ -31,6 +42,8 @@ public class MusicBrowserActivity extends Activity{
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         //用布局管理器设置布局方向
         linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+        recyclerView.setItemAnimator(new DefaultItemAnimator());
+
         //将布局管理器应用到recyclerView中
         recyclerView.setLayoutManager(linearLayoutManager);
 

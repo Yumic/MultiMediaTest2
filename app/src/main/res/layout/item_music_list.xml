@@ -5,7 +5,8 @@
     android:layout_marginLeft="@dimen/item_horizontal_margin"
     android:layout_marginRight="@dimen/item_horizontal_margin"
     android:layout_marginTop="@dimen/item_vertical_margin"
-    android:layout_marginBottom="@dimen/item_vertical_margin">
+    android:layout_marginBottom="@dimen/item_vertical_margin"
+    >
 
     <TextView
         android:layout_width="wrap_content"
@@ -48,4 +49,14 @@
         android:layout_alignTop="@+id/textViewDivider"
         android:layout_toRightOf="@+id/textViewDivider"
         android:layout_toEndOf="@+id/textViewDivider" />
+
+    <CheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/checkBox"
+        android:checked="false"
+        android:layout_centerVertical="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:visibility="invisible"/>
 </RelativeLayout>

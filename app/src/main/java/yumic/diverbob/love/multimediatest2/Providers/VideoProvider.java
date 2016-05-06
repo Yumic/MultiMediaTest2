@@ -5,7 +5,6 @@ import android.database.Cursor;
 import android.provider.MediaStore;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import yumic.diverbob.love.multimediatest2.AbstructProvider;
 import yumic.diverbob.love.multimediatest2.Entities.Video;
@@ -21,8 +20,8 @@ public class VideoProvider implements AbstructProvider {
     }
 
     @Override
-    public List<Video> getAllList() {
-        List<Video> list = null;
+    public ArrayList<Video> getAllList() {
+        ArrayList<Video> list = null;
         if (context != null) {
             Cursor cursor = context.getContentResolver().query(
                     MediaStore.Video.Media.EXTERNAL_CONTENT_URI, null, null,

@@ -7,7 +7,6 @@ import android.provider.MediaStore;
 import android.util.Log;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import yumic.diverbob.love.multimediatest2.AbstructProvider;
 import yumic.diverbob.love.multimediatest2.Entities.Music;
@@ -28,8 +27,8 @@ public class MusicProvider implements AbstructProvider {
 
 
     @Override
-    public List getAllList() {
-        List<Music> musicList = new ArrayList<Music>();
+    public ArrayList getAllList() {
+        ArrayList<Music> musicList = new ArrayList<Music>();
         ContentResolver contentResolver = context.getContentResolver();
         if(contentResolver != null){
             Cursor cursor = contentResolver.query(MediaStore.Audio.Media.EXTERNAL_CONTENT_URI,
