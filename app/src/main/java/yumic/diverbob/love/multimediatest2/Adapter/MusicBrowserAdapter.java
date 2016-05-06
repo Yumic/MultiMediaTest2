@@ -1,4 +1,4 @@
-package yumic.diverbob.love.multimediatest2;
+package yumic.diverbob.love.multimediatest2.Adapter;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
@@ -10,6 +10,8 @@ import android.widget.TextView;
 
 import java.util.List;
 
+import yumic.diverbob.love.multimediatest2.Entities.Music;
+import yumic.diverbob.love.multimediatest2.R;
 import yumic.diverbob.love.multimediatest2.Utils.LogHelper;
 
 
@@ -39,6 +41,7 @@ public class MusicBrowserAdapter extends RecyclerView.Adapter<MusicBrowserAdapte
         holder.textViewTitle.setText(musicList.get(position).getTitle());
         holder.textViewAlbum.setText(musicList.get(position).getAlbum());
         holder.textViewArtist.setText(musicList.get(position).getArtist());
+        Log.d(TAG,"Name:"+musicList.get(position).getTitle()+"   Path:"+musicList.get(position).getPath());
     }
 
     @Override

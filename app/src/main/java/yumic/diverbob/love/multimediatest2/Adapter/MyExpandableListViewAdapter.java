@@ -1,4 +1,4 @@
-package yumic.diverbob.love.multimediatest2;
+package yumic.diverbob.love.multimediatest2.Adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -9,6 +9,8 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import yumic.diverbob.love.multimediatest2.R;
 
 /**
  * Created by Oathkeeper on 2016/5/4.

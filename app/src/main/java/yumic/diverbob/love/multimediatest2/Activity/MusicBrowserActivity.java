@@ -5,31 +5,26 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
-import yumic.diverbob.love.multimediatest2.MusicBrowserAdapter;
-import yumic.diverbob.love.multimediatest2.MusicList;
+import yumic.diverbob.love.multimediatest2.Adapter.MusicBrowserAdapter;
+import yumic.diverbob.love.multimediatest2.Providers.MusicProvider;
 import yumic.diverbob.love.multimediatest2.R;
 
 /**
  * Created by Oathkeeper on 2016/3/2.
  */
 public class MusicBrowserActivity extends Activity{
-
-
-
-
-
     private int[] _ids;//存放音乐文件的id数组
     private String[] _titles;//存放音乐文件的标题数组
     private String[] _path;//存放音乐文件的路径
 
     private RecyclerView recyclerView;
-
+    private MusicProvider musicProvider;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_music_list);
-
+        musicProvider = new MusicProvider(this);
         recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
         //设置布局管理器
         //new一个布局管理器
@@ -41,7 +36,7 @@ public class MusicBrowserActivity extends Activity{
 
 
         MusicBrowserAdapter musicBrowserAdapter = new MusicBrowserAdapter(this);
-        musicBrowserAdapter.setMusicList(MusicList.getMusicList(this));
+        musicBrowserAdapter.setMusicList(musicProvider.getAllList());
         recyclerView.setAdapter(musicBrowserAdapter);
 
         //点击开始扫描，扫描所有音乐文件

@@ -1,4 +1,4 @@
-package yumic.diverbob.love.multimediatest2;
+package yumic.diverbob.love.multimediatest2.Providers;
 
 import android.content.Context;
 import android.database.Cursor;
@@ -6,6 +6,9 @@ import android.provider.MediaStore;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import yumic.diverbob.love.multimediatest2.AbstructProvider;
+import yumic.diverbob.love.multimediatest2.Entities.Video;
 
 /**
  * Created by Oathkeeper on 2016/5/5.

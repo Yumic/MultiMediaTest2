@@ -1,4 +1,4 @@
-package yumic.diverbob.love.multimediatest2;
+package yumic.diverbob.love.multimediatest2.Providers;
 
 import android.content.ContentResolver;
 import android.content.Context;
@@ -9,16 +9,26 @@ import android.util.Log;
 import java.util.ArrayList;
 import java.util.List;
 
+import yumic.diverbob.love.multimediatest2.AbstructProvider;
+import yumic.diverbob.love.multimediatest2.Entities.Music;
 import yumic.diverbob.love.multimediatest2.Utils.LogHelper;
 
 /**
  * Created by Oathkeeper on 2016/3/2.
  */
-public class MusicList {
-    private static final String TAG = LogHelper.makeLogTag(MusicList.class);
+public class MusicProvider implements AbstructProvider {
+    private static final String TAG = LogHelper.makeLogTag(MusicProvider.class);
+
+    private Context context;
+
+    public MusicProvider(Context context) {
+        this.context = context;
+    }
 
 
-    public static List<Music> getMusicList(Context context){
+
+    @Override
+    public List getAllList() {
         List<Music> musicList = new ArrayList<Music>();
         ContentResolver contentResolver = context.getContentResolver();
         if(contentResolver != null){
@@ -34,13 +44,15 @@ public class MusicList {
                 String title;
                 String artist;
                 String album;
+                String path;
                 int count = 0;
                 do{
                     title = cursor.getString(cursor.getColumnIndex(MediaStore.Audio.Media.TITLE));
                     artist = cursor.getString(cursor.getColumnIndex(MediaStore.Audio.Media.ARTIST));
                     album = cursor.getString(cursor.getColumnIndex(MediaStore.Audio.Media.ALBUM));
+                    path = cursor.getString(cursor.getColumnIndex(MediaStore.Audio.Media.DATA));
                     Log.d(TAG,title+artist+album);
-                    Music music = new Music(title,artist,album);
+                    Music music = new Music(title,artist,album,path);
                     musicList.add(music);
                     count++;
                 }while(count<10&&cursor.moveToNext());

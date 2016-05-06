@@ -25,11 +25,11 @@ import java.util.List;
 
 import yumic.diverbob.love.multimediatest2.AbstructProvider;
 import yumic.diverbob.love.multimediatest2.ListDao;
-import yumic.diverbob.love.multimediatest2.MyExpandableListViewAdapter;
+import yumic.diverbob.love.multimediatest2.Adapter.MyExpandableListViewAdapter;
 import yumic.diverbob.love.multimediatest2.R;
 import yumic.diverbob.love.multimediatest2.Utils.PermissionUtil;
-import yumic.diverbob.love.multimediatest2.Video;
-import yumic.diverbob.love.multimediatest2.VideoProvider;
+import yumic.diverbob.love.multimediatest2.Entities.Video;
+import yumic.diverbob.love.multimediatest2.Providers.VideoProvider;
 
 public class MainActivity extends AppCompatActivity {
     public static final String TAG ="MainActivity.java";

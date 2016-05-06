@@ -1,4 +1,4 @@
-package yumic.diverbob.love.multimediatest2;
+package yumic.diverbob.love.multimediatest2.Entities;
 
 
 import yumic.diverbob.love.multimediatest2.Utils.LogHelper;
@@ -18,16 +18,26 @@ public class Music {
     private String image;
     //歌曲时长
     private String duration;
+    private String path;
 
 
-    public Music( String title,String artist,String album) {
+    public Music( String title,String artist,String album,String path) {
         this.album = album;
         this.artist = artist;
         this.title = title;
+        this.path = path;
     }
 
     public Music() {
 
+    }
+
+    public String getPath() {
+        return path;
+    }
+
+    public void setPath(String path) {
+        this.path = path;
     }
 
     public String getAlbum() {
