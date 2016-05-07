@@ -1,19 +1,32 @@
 package yumic.diverbob.love.multimediatest2.Activity;
 
+import android.content.Intent;
 import android.media.MediaPlayer;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.MediaController;
 import android.widget.Toast;
 import android.widget.VideoView;
 
 import java.io.File;
+import java.util.ArrayList;
 
+import yumic.diverbob.love.multimediatest2.Entities.Music;
+import yumic.diverbob.love.multimediatest2.Entities.Video;
 import yumic.diverbob.love.multimediatest2.R;
+import yumic.diverbob.love.multimediatest2.Utils.LogHelper;
 
 public class VideoPlayerActivity extends AppCompatActivity {
 
+    private static final String TAG = LogHelper.makeLogTag(VideoPlayerActivity.class);
+
     private VideoView video;
+    private ArrayList<Video> videoList;
+
+    private int listNum;
+    private int nowNum;
+    private int listCount;
 
     /** Called when the activity is firstcreated. */
     @Override
@@ -21,8 +34,21 @@ public class VideoPlayerActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_video_player);
 
+
         video=(VideoView) findViewById(R.id.videoView);
-        File file=new File("/storage/01A4-1AE0/1.mp4");
+
+        Intent intent= getIntent();
+        if(intent != null){
+            Bundle bundle = intent.getExtras();
+            videoList  = intent.getParcelableArrayListExtra("VideoPlayList");
+            listNum = intent.getIntExtra("ListNumber",0);
+            Log.d(TAG,"listNum:"+listNum);
+
+            nowNum = listNum;
+            listCount = videoList.size();
+        }
+
+        File file=new File(videoList.get(nowNum).getPath());
         MediaController mc=new MediaController(this);       // 创建一个MediaController对象
         if(file.exists()){
             video.setVideoPath(file.getAbsolutePath());
@@ -39,6 +65,7 @@ public class VideoPlayerActivity extends AppCompatActivity {
                 @Override
                 public void onCompletion(MediaPlayer mp) {
                     Toast.makeText(VideoPlayerActivity.this, "视频播放完毕！", Toast.LENGTH_SHORT).show();
+                    //改为播放下一个视频
                 }
             });
         }else{

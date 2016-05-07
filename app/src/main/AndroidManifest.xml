@@ -23,6 +23,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".Activity.MusicBrowserActivity" />
+        <activity android:name=".Activity.VideoBrowserActivity" />
+
         <activity android:name=".Activity.MusicPlayerActivity" />
         <activity android:name=".Activity.VideoPlayerActivity"></activity>
     </application>

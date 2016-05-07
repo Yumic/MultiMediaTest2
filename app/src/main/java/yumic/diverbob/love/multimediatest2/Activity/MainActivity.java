@@ -151,7 +151,7 @@ public class MainActivity extends AppCompatActivity {
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_browse_video) {
 
-            Intent intent = new Intent(MainActivity.this,VideoPlayerActivity.class);
+            Intent intent = new Intent(MainActivity.this,VideoBrowserActivity.class);
             startActivity(intent);
             return true;
         }
