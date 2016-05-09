@@ -50,6 +50,7 @@ public class VideoPlayerActivity extends AppCompatActivity {
 
         File file=new File(videoList.get(nowNum).getPath());
         MediaController mc=new MediaController(this);       // 创建一个MediaController对象
+    //    mc.setPrevNextListeners(new P);
         if(file.exists()){
             video.setVideoPath(file.getAbsolutePath());
             video.setMediaController(mc);       // 将VideoView与MediaController关联起来

@@ -1,6 +1,8 @@
 package yumic.diverbob.love.multimediatest2.Adapter;
 
 import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +12,8 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 
+import yumic.diverbob.love.multimediatest2.Activity.MusicBrowserActivity;
+import yumic.diverbob.love.multimediatest2.Activity.VideoBrowserActivity;
 import yumic.diverbob.love.multimediatest2.R;
 
 /**
@@ -25,6 +29,8 @@ public class MyExpandableListViewAdapter extends BaseExpandableListAdapter {
     private List<List<String>> itemList;
 
 
+
+
     public void setItemToAdd(List list,int category){
         itemToAdd[category] = list;
     }
@@ -37,6 +43,11 @@ public class MyExpandableListViewAdapter extends BaseExpandableListAdapter {
     {
         this.context = context;
         groupList = new ArrayList<String>();
+    }
+
+
+    public void initList(){
+        groupList.clear();
         groupList.add("视频");
         groupList.add("音频");
         groupList.add("图片");
@@ -54,13 +65,6 @@ public class MyExpandableListViewAdapter extends BaseExpandableListAdapter {
         itemList.add(item[0]);
         itemList.add(item[1]);
         itemList.add(item[2]);
-
-
-    }
-
-
-    public void initList(){
-
         for(int j = 0;j<3;j++){
             if(itemToAdd[j]!=null){
 
@@ -178,7 +182,7 @@ public class MyExpandableListViewAdapter extends BaseExpandableListAdapter {
      * @return
      */
     @Override
-    public View getChildView(int groupPosition, int childPosition, boolean isLastChild, View convertView, ViewGroup parent) {
+    public View getChildView(final int groupPosition, int childPosition, boolean isLastChild, View convertView, ViewGroup parent) {
         ItemHolder itemHolder = null;
         if(convertView == null){
             convertView = LayoutInflater.from(context).inflate(R.layout.expendlist_item,null);
@@ -190,7 +194,32 @@ public class MyExpandableListViewAdapter extends BaseExpandableListAdapter {
         }
 
         itemHolder.textView.setText(itemList.get(groupPosition).get(childPosition));
+        itemHolder.textView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //打开MusicPlayerActivity，并传递播放列表
+                Intent intent = new Intent(context, MusicBrowserActivity.class);;
+                switch(groupPosition){
+                    case 0:
+                        intent   = new Intent(context, VideoBrowserActivity.class);
+                        break;
+                    case 1:
+                        intent   = new Intent(context, MusicBrowserActivity.class);
+                        break;
+                    case 2:
+                        intent   = new Intent(context, MusicBrowserActivity.class);
+                        //TO-DO
+                        break;
 
+                }
+
+                ArrayList<String> allListName =  new ArrayList(itemToAdd[groupPosition]);
+                Bundle bundle = new Bundle();
+                bundle.putStringArrayList("allListName",allListName);
+                intent.putExtras(bundle);
+                context.startActivity(intent);
+            }
+        });
         return convertView;
     }
 

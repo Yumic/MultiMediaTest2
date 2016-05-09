@@ -21,15 +21,13 @@ import android.widget.ExpandableListView;
 import android.widget.PopupWindow;
 import android.widget.Spinner;
 
+import java.util.ArrayList;
 import java.util.List;
 
-import yumic.diverbob.love.multimediatest2.AbstructProvider;
 import yumic.diverbob.love.multimediatest2.ListDao;
 import yumic.diverbob.love.multimediatest2.Adapter.MyExpandableListViewAdapter;
 import yumic.diverbob.love.multimediatest2.R;
 import yumic.diverbob.love.multimediatest2.Utils.PermissionUtil;
-import yumic.diverbob.love.multimediatest2.Entities.Video;
-import yumic.diverbob.love.multimediatest2.Providers.VideoProvider;
 
 public class MainActivity extends AppCompatActivity {
     public static final String TAG ="MainActivity.java";
@@ -122,9 +120,8 @@ public class MainActivity extends AppCompatActivity {
         for (int i=0; i<groupCount; i++) {
             expandableListView.expandGroup(i);
         };
-       // expandableListView.setGroupIndicator(null); //去掉ExpandableListView的默认箭头
-       // expandableListView
-    }
+
+}
 
     void initData(){
         adapter.setItemToAdd(listDao.getList("视频"),0);
@@ -156,7 +153,13 @@ public class MainActivity extends AppCompatActivity {
             return true;
         }
         if (id == R.id.action_browse_music) {
-            Intent intent = new Intent(MainActivity.this,MusicBrowserActivity.class);
+            //传递列表 读取数据库
+                    Intent intent = new Intent(MainActivity.this,MusicBrowserActivity.class);
+            ArrayList<String> allListName =  new ArrayList(listDao.getList("音频"));
+            Bundle bundle = new Bundle();
+            bundle.putStringArrayList("allListName",allListName);
+            intent.putExtras(bundle);
+
             startActivity(intent);
             return true;
         }

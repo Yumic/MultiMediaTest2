@@ -19,6 +19,7 @@ public class ListDao {
 
     // 列定义
     private final String[] ORDER_COLUMNS = new String[] {"category", "listName"};
+    private final String[] ORDER_COLUMNS2 = new String[] {"category","filePath", "listName"};
 
     private Context context;
     private DataBaseHelper dataBaseHelper;
@@ -78,7 +79,6 @@ public class ListDao {
             contentValues.put("category", category);
             contentValues.put("listName", listName);
             db.insertOrThrow(DataBaseHelper.TABLE_NAME1, null, contentValues);
-
             db.setTransactionSuccessful();
             return true;
         }catch (SQLiteConstraintException e){
@@ -89,6 +89,7 @@ public class ListDao {
             if (db != null) {
                 db.endTransaction();
                 db.close();
+                Log.d(TAG,"新增一条记录："+"category:"+category+" listName:"+listName);
             }
         }
         return false;
@@ -97,7 +98,7 @@ public class ListDao {
     /**
      * 数据查询  此处将用户名为"Bor"的信息提取出来
      */
-    public List<String> getList(String category){
+    public ArrayList<String> getList(String category){
         SQLiteDatabase db = null;
         Cursor cursor = null;
 
@@ -112,11 +113,55 @@ public class ListDao {
                     null, null, null);
 
             if (cursor.getCount() > 0) {
-                List<String> list = new ArrayList<String>(cursor.getCount());
+                ArrayList<String> list = new ArrayList<String>(cursor.getCount());
                 while (cursor.moveToNext()) {
                     String order = cursor.getString(cursor.getColumnIndex("listName"));
 
                     Log.d("ListDao","类别："+category+"ListName"+order);
+                    list.add(order);
+                }
+                return list;
+            }
+        }
+        catch (Exception e) {
+            Log.e(TAG, "", e);
+        }
+        finally {
+            if (cursor != null) {
+                cursor.close();
+            }
+            if (db != null) {
+                db.close();
+            }
+        }
+
+        return null;
+    }
+
+    /**
+     * 数据查询 提取特定列表中的所有文件路径
+     */
+        public List<String> getMediaList(String category,String listName){
+            SQLiteDatabase db = null;
+            Cursor cursor = null;
+
+        try {
+            db = dataBaseHelper.getReadableDatabase();
+
+            // select * from Orders where CustomName = 'Bor'
+            cursor = db.query(dataBaseHelper.TABLE_NAME2,
+                    ORDER_COLUMNS2,
+                    "listName = ?,category = ?",
+                    new String[] {listName,category},
+                    null, null, null);
+
+            if (cursor.getCount() > 0) {
+                List<String> list = new ArrayList<String>(cursor.getCount());
+                while (cursor.moveToNext()) {
+                    String order = cursor.getString(cursor.getColumnIndex("listName"));
+                    String order2 = cursor.getString(cursor.getColumnIndex("category"));
+                    String order3 = cursor.getString(cursor.getColumnIndex("filePath"));
+                    Log.d("ListDao","类别："+order2+"ListName"+order+"  filePath:"+order3);
                     list.add(order);
                 }
                 return list;

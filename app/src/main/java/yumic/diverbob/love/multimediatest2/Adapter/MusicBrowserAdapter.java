@@ -3,12 +3,13 @@ package yumic.diverbob.love.multimediatest2.Adapter;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.CheckBox;
+import android.widget.Button;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -27,8 +28,8 @@ public class MusicBrowserAdapter extends RecyclerView.Adapter<MusicBrowserAdapte
     private static final String TAG = LogHelper.makeLogTag(MusicBrowserAdapter.class);
 
     private static ArrayList<Music> musicList;
+    private static List<String> allListName;
 
-    private CheckBox mSolvedCheckBox;
 
     private final LayoutInflater mLayoutInflater;
     private final Context mContext;
@@ -48,7 +49,7 @@ public class MusicBrowserAdapter extends RecyclerView.Adapter<MusicBrowserAdapte
         holder.textViewTitle.setText(musicList.get(position).getTitle());
         holder.textViewAlbum.setText(musicList.get(position).getAlbum());
         holder.textViewArtist.setText(musicList.get(position).getArtist());
-        holder.checkBox.setChecked(musicList.get(position).isChecked());
+
         Log.d(TAG,"Name:"+musicList.get(position).getTitle()+"   Path:"+musicList.get(position).getPath());
     }
 
@@ -68,6 +69,10 @@ public class MusicBrowserAdapter extends RecyclerView.Adapter<MusicBrowserAdapte
         musicList.clear();
     }
 
+    public void setAllListName(List<String> allListName) {
+        this.allListName = allListName;
+    }
+
     public void setMusicList(ArrayList<Music> musicList) {
         this.musicList = musicList;
     }
@@ -77,7 +82,7 @@ public class MusicBrowserAdapter extends RecyclerView.Adapter<MusicBrowserAdapte
         TextView textViewTitle;
         TextView textViewArtist;
         TextView textViewAlbum;
-        CheckBox checkBox;
+        Button buttonAdd;
         //这里声明控件
         public ViewHolder(final View itemView, final Context mContext) {
             super(itemView);
@@ -104,7 +109,21 @@ public class MusicBrowserAdapter extends RecyclerView.Adapter<MusicBrowserAdapte
             textViewTitle = (TextView) itemView.findViewById(R.id.textViewTitle);
             textViewArtist = (TextView) itemView.findViewById(R.id.textViewArtist);
             textViewAlbum  = (TextView) itemView.findViewById(R.id.textViewAlbum);
-            checkBox = (CheckBox) itemView.findViewById(R.id.checkBox);
+            buttonAdd = (Button) itemView.findViewById(R.id.buttonAdd);
+
+            buttonAdd.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    //获得当前该类下的所有列表
+                    String[] arrString = (String[])allListName.toArray(new String[]{}) ;
+                    new AlertDialog.Builder(mContext).setTitle("添加到播放列表").setItems(
+                            arrString, null).setNegativeButton(
+                           "确定", null).show();
+                    //弹出添加至列表的对话框
+
+                }
+            });
+
 
         }
 

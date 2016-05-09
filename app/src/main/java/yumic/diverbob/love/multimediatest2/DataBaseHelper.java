@@ -31,7 +31,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         String sql = "create table if not exists "+TABLE_NAME1+"(category varchar(20) not null , listName varchar(60) not null," +
                 "id int identity(1,1),constraint pkid primary key (id));";
         db.execSQL(sql);
-        String sql2 = "create table if not exists "+TABLE_NAME2+"(category varchar(20) not null , listName varchar(60) not null );"+
+        String sql2 = "create table if not exists "+TABLE_NAME2+"(category varchar(20) not null ,filePath varchar(255) not null , listName varchar(60) not null );"+
                 "id int identity(1,1),constraint pkid primary key (id));";
         db.execSQL(sql2);
     }

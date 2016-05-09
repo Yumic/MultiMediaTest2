@@ -50,13 +50,13 @@
         android:layout_toRightOf="@+id/textViewDivider"
         android:layout_toEndOf="@+id/textViewDivider" />
 
-    <CheckBox
+    <Button
+        style="?android:attr/buttonStyleSmall"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/checkBox"
-        android:checked="false"
-        android:layout_centerVertical="true"
+        android:text="add"
+        android:id="@+id/buttonAdd"
+        android:layout_alignParentTop="true"
         android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:visibility="invisible"/>
+        android:layout_alignParentEnd="true" />
 </RelativeLayout>
