@@ -151,7 +151,7 @@ public class ListDao {
             // select * from Orders where CustomName = 'Bor'
             cursor = db.query(dataBaseHelper.TABLE_NAME2,
                     ORDER_COLUMNS2,
-                    "listName = ?,category = ?",
+                    "listName = ? & category = ?",
                     new String[] {listName,category},
                     null, null, null);
 

@@ -158,6 +158,9 @@ public class MainActivity extends AppCompatActivity {
             ArrayList<String> allListName =  new ArrayList(listDao.getList("音频"));
             String[] arrString = (String[])allListName.toArray(new String[]{}) ;
 
+
+        //    listDao.getMediaList("音频","rqye");
+
             intent.putExtra("allListName",arrString);
             startActivity(intent);
             return true;

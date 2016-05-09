@@ -125,9 +125,6 @@ public class MusicBrowserAdapter extends RecyclerView.Adapter<MusicBrowserAdapte
                                 public void onClick(DialogInterface dialog, int which) {
                                     //添加到对应的数据库中
                                     listDao.insertFile(musicList.get(getAdapterPosition()).getPath(),allListName[which],"音频");
-
-
-
                                 }
                             }).setNegativeButton(
                            "确定", null).show();
