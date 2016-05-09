@@ -28,7 +28,7 @@ public class MusicBrowserAdapter extends RecyclerView.Adapter<MusicBrowserAdapte
     private static final String TAG = LogHelper.makeLogTag(MusicBrowserAdapter.class);
 
     private static ArrayList<Music> musicList;
-    private static List<String> allListName;
+    private static String[] allListName;
 
 
     private final LayoutInflater mLayoutInflater;
@@ -69,7 +69,7 @@ public class MusicBrowserAdapter extends RecyclerView.Adapter<MusicBrowserAdapte
         musicList.clear();
     }
 
-    public void setAllListName(List<String> allListName) {
+    public void setAllListName(String[] allListName) {
         this.allListName = allListName;
     }
 
@@ -115,10 +115,11 @@ public class MusicBrowserAdapter extends RecyclerView.Adapter<MusicBrowserAdapte
                 @Override
                 public void onClick(View v) {
                     //获得当前该类下的所有列表
-                    String[] arrString = (String[])allListName.toArray(new String[]{}) ;
+
                     new AlertDialog.Builder(mContext).setTitle("添加到播放列表").setItems(
-                            arrString, null).setNegativeButton(
+                            allListName, null).setNegativeButton(
                            "确定", null).show();
+                    //Log.d(TAG,"列表如下："+allListName.toString());
                     //弹出添加至列表的对话框
 
                 }

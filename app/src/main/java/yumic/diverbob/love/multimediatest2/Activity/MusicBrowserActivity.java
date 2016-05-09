@@ -16,16 +16,17 @@ import java.util.ArrayList;
 import yumic.diverbob.love.multimediatest2.Adapter.MusicBrowserAdapter;
 import yumic.diverbob.love.multimediatest2.Providers.MusicProvider;
 import yumic.diverbob.love.multimediatest2.R;
+import yumic.diverbob.love.multimediatest2.Utils.LogHelper;
 
 /**
  * Created by Oathkeeper on 2016/3/2.
  */
 public class MusicBrowserActivity extends Activity{
-
+    private static final String TAG = LogHelper.makeLogTag(MusicBrowserActivity.class);
     private RecyclerView recyclerView;
     private MusicProvider musicProvider;
 
-    private ArrayList<String> allListName;
+    private String[] allListName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,8 +35,8 @@ public class MusicBrowserActivity extends Activity{
         setContentView(R.layout.activity_music_list);
         Intent intent= getIntent();
         if(intent != null){
-            Bundle bundle = intent.getExtras();
-            allListName  = intent.getStringArrayListExtra("allListName");
+
+            allListName  = intent.getStringArrayExtra("allListName");
 
         }
 
@@ -55,6 +56,7 @@ public class MusicBrowserActivity extends Activity{
 
         MusicBrowserAdapter musicBrowserAdapter = new MusicBrowserAdapter(this);
         musicBrowserAdapter.setMusicList(musicProvider.getAllList());
+        musicBrowserAdapter.setAllListName(allListName);
         recyclerView.setAdapter(musicBrowserAdapter);
 
         //点击开始扫描，扫描所有音乐文件

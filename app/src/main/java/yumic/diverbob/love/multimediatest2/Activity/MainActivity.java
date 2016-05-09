@@ -156,10 +156,9 @@ public class MainActivity extends AppCompatActivity {
             //传递列表 读取数据库
                     Intent intent = new Intent(MainActivity.this,MusicBrowserActivity.class);
             ArrayList<String> allListName =  new ArrayList(listDao.getList("音频"));
-            Bundle bundle = new Bundle();
-            bundle.putStringArrayList("allListName",allListName);
-            intent.putExtras(bundle);
+            String[] arrString = (String[])allListName.toArray(new String[]{}) ;
 
+            intent.putExtra("allListName",arrString);
             startActivity(intent);
             return true;
         }
