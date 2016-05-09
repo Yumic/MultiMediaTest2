@@ -1,6 +1,7 @@
 package yumic.diverbob.love.multimediatest2.Adapter;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
@@ -17,6 +18,7 @@ import java.util.List;
 
 import yumic.diverbob.love.multimediatest2.Activity.MusicPlayerActivity;
 import yumic.diverbob.love.multimediatest2.Entities.Music;
+import yumic.diverbob.love.multimediatest2.ListDao;
 import yumic.diverbob.love.multimediatest2.R;
 import yumic.diverbob.love.multimediatest2.Utils.LogHelper;
 
@@ -29,13 +31,14 @@ public class MusicBrowserAdapter extends RecyclerView.Adapter<MusicBrowserAdapte
 
     private static ArrayList<Music> musicList;
     private static String[] allListName;
-
+    private static ListDao listDao;
 
     private final LayoutInflater mLayoutInflater;
     private final Context mContext;
     public MusicBrowserAdapter(Context context) {
         mContext = context;
         mLayoutInflater = LayoutInflater.from(context);
+        listDao = new ListDao(mContext);
     }
 
     @Override
@@ -117,7 +120,16 @@ public class MusicBrowserAdapter extends RecyclerView.Adapter<MusicBrowserAdapte
                     //获得当前该类下的所有列表
 
                     new AlertDialog.Builder(mContext).setTitle("添加到播放列表").setItems(
-                            allListName, null).setNegativeButton(
+                            allListName, new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    //添加到对应的数据库中
+                                    listDao.insertFile(musicList.get(getAdapterPosition()).getPath(),allListName[which],"音频");
+
+
+
+                                }
+                            }).setNegativeButton(
                            "确定", null).show();
                     //Log.d(TAG,"列表如下："+allListName.toString());
                     //弹出添加至列表的对话框

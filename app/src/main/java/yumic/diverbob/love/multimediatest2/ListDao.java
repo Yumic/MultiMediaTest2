@@ -186,20 +186,23 @@ public class ListDao {
     /**
      * 新增一条数据
      */
-    public boolean insertFile(String fileName,String listName){
+    public boolean insertFile(String filePath,String listName,String category){
         SQLiteDatabase db = null;
 
         try {
             db = dataBaseHelper.getWritableDatabase();
             db.beginTransaction();
 
-            // insert into Orders(Id, CustomName, OrderPrice, Country) values (7, "Jne", 700, "China");
             ContentValues contentValues = new ContentValues();
-            contentValues.put("fileName", fileName);
+            contentValues.put("category", category);
+            contentValues.put("filePath", filePath);
             contentValues.put("listName", listName);
+
+
             db.insertOrThrow(DataBaseHelper.TABLE_NAME2, null, contentValues);
 
             db.setTransactionSuccessful();
+            Log.d(TAG,"向列表"+listName+"中添加了"+filePath);
             return true;
         }catch (SQLiteConstraintException e){
             Toast.makeText(context, "主键重复", Toast.LENGTH_SHORT).show();

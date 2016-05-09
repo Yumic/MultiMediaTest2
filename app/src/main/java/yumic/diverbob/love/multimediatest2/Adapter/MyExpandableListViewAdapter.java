@@ -198,7 +198,7 @@ public class MyExpandableListViewAdapter extends BaseExpandableListAdapter {
             @Override
             public void onClick(View v) {
                 //打开MusicPlayerActivity，并传递播放列表
-                Intent intent = new Intent(context, MusicBrowserActivity.class);;
+                Intent intent = new Intent(context, MusicBrowserActivity.class);
                 switch(groupPosition){
                     case 0:
                         intent   = new Intent(context, VideoBrowserActivity.class);
