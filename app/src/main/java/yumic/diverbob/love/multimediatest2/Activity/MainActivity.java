@@ -166,6 +166,8 @@ public class MainActivity extends AppCompatActivity {
             return true;
         }
         if (id == R.id.action_browse_photo) {
+            Intent intent = new Intent(MainActivity.this,GalleryActivity.class);
+            startActivity(intent);
             return true;
         }
 
