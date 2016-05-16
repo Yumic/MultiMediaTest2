@@ -1,8 +1,9 @@
-package yumic.diverbob.love.multimediatest2.Adapter;
+package yumic.diverbob.love.multimediatest2.Adapters;
 
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,8 +13,9 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 
-import yumic.diverbob.love.multimediatest2.Activity.MusicBrowserActivity;
-import yumic.diverbob.love.multimediatest2.Activity.VideoBrowserActivity;
+import yumic.diverbob.love.multimediatest2.Activities.MusicBrowserActivity;
+import yumic.diverbob.love.multimediatest2.Activities.VideoBrowserActivity;
+import yumic.diverbob.love.multimediatest2.ListDao;
 import yumic.diverbob.love.multimediatest2.R;
 
 /**
@@ -21,13 +23,13 @@ import yumic.diverbob.love.multimediatest2.R;
  */
 public class MyExpandableListViewAdapter extends BaseExpandableListAdapter {
 
-    private static final String TAG = "MyExpandableListViewAdapter";
+    private static final String TAG = "MyExpandableAdapter";
     private Context context;
     private List<String> groupList;
     private List item[] = new ArrayList[3];
     private List itemToAdd[] = new ArrayList[3];
     private List<List<String>> itemList;
-
+    private ListDao listDao;
 
 
 
@@ -43,6 +45,7 @@ public class MyExpandableListViewAdapter extends BaseExpandableListAdapter {
     {
         this.context = context;
         groupList = new ArrayList<String>();
+        listDao = new ListDao(context);
     }
 
 
@@ -53,13 +56,13 @@ public class MyExpandableListViewAdapter extends BaseExpandableListAdapter {
         groupList.add("图片");
 
         item[0] = new ArrayList<String>();
-        item[0].add("所有视频");
+
 
         item[1] = new ArrayList<String>();
-        item[1].add("所有音频");
+
 
         item[2] = new ArrayList<String>();
-        item[2].add("所有图片");
+
 
         itemList = new ArrayList<List<String>>();
         itemList.add(item[0]);
@@ -182,7 +185,7 @@ public class MyExpandableListViewAdapter extends BaseExpandableListAdapter {
      * @return
      */
     @Override
-    public View getChildView(final int groupPosition, int childPosition, boolean isLastChild, View convertView, ViewGroup parent) {
+    public View getChildView(final int groupPosition, final int childPosition, boolean isLastChild, View convertView, ViewGroup parent) {
         ItemHolder itemHolder = null;
         if(convertView == null){
             convertView = LayoutInflater.from(context).inflate(R.layout.expendlist_item,null);
@@ -212,8 +215,9 @@ public class MyExpandableListViewAdapter extends BaseExpandableListAdapter {
                         break;
 
                 }
-
-                ArrayList<String> allListName =  new ArrayList(itemToAdd[groupPosition]);
+                String listName = itemList.get(groupPosition).get(childPosition);
+                Log.d(TAG,"当前点击列表："+listName);
+                ArrayList<String> allListName =  listDao.getMediaList(listName);
                 Bundle bundle = new Bundle();
                 bundle.putStringArrayList("allListName",allListName);
                 intent.putExtras(bundle);

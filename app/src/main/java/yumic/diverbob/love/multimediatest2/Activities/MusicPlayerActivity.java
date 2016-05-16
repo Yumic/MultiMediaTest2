@@ -1,9 +1,7 @@
-package yumic.diverbob.love.multimediatest2.Activity;
+package yumic.diverbob.love.multimediatest2.Activities;
 
 import android.content.Intent;
-import android.content.res.AssetManager;
 import android.media.MediaPlayer;
-import android.os.Parcelable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -44,6 +42,7 @@ public class MusicPlayerActivity extends AppCompatActivity {
 
         Intent intent= getIntent();
         if(intent != null){
+            //获取音频播放列表
             Bundle bundle = intent.getExtras();
             musicList  = intent.getParcelableArrayListExtra("MusicPlayList");
             listNum = intent.getIntExtra("ListNumber",0);
@@ -74,6 +73,9 @@ public class MusicPlayerActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * 更新注释
+     */
     private void updateViews(){
         if(musicList!=null){
             Music nowMusic=musicList.get(nowNum);

@@ -1,4 +1,4 @@
-package yumic.diverbob.love.multimediatest2.Adapter;
+package yumic.diverbob.love.multimediatest2.Adapters;
 
 import android.content.Context;
 import android.content.DialogInterface;
@@ -14,9 +14,8 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import java.util.ArrayList;
-import java.util.List;
 
-import yumic.diverbob.love.multimediatest2.Activity.MusicPlayerActivity;
+import yumic.diverbob.love.multimediatest2.Activities.MusicPlayerActivity;
 import yumic.diverbob.love.multimediatest2.Entities.Music;
 import yumic.diverbob.love.multimediatest2.ListDao;
 import yumic.diverbob.love.multimediatest2.R;
@@ -124,7 +123,7 @@ public class MusicBrowserAdapter extends RecyclerView.Adapter<MusicBrowserAdapte
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
                                     //添加到对应的数据库中
-                                    listDao.insertFile(musicList.get(getAdapterPosition()).getPath(),allListName[which],"音频");
+                                    listDao.insertFile(musicList.get(getAdapterPosition()).getPath(),allListName[which]);
                                 }
                             }).setNegativeButton(
                            "确定", null).show();

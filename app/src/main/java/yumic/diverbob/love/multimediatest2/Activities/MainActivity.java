@@ -1,4 +1,4 @@
-package yumic.diverbob.love.multimediatest2.Activity;
+package yumic.diverbob.love.multimediatest2.Activities;
 
 import android.app.ActionBar;
 import android.content.Context;
@@ -22,10 +22,9 @@ import android.widget.PopupWindow;
 import android.widget.Spinner;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import yumic.diverbob.love.multimediatest2.ListDao;
-import yumic.diverbob.love.multimediatest2.Adapter.MyExpandableListViewAdapter;
+import yumic.diverbob.love.multimediatest2.Adapters.MyExpandableListViewAdapter;
 import yumic.diverbob.love.multimediatest2.R;
 import yumic.diverbob.love.multimediatest2.Utils.PermissionUtil;
 
@@ -159,7 +158,7 @@ public class MainActivity extends AppCompatActivity {
             String[] arrString = (String[])allListName.toArray(new String[]{}) ;
 
 
-        //    listDao.getMediaList("音频","rqye");
+
 
             intent.putExtra("allListName",arrString);
             startActivity(intent);

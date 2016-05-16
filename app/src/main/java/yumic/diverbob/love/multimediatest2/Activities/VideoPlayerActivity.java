@@ -1,4 +1,4 @@
-package yumic.diverbob.love.multimediatest2.Activity;
+package yumic.diverbob.love.multimediatest2.Activities;
 
 import android.content.Intent;
 import android.media.MediaPlayer;
@@ -12,7 +12,6 @@ import android.widget.VideoView;
 import java.io.File;
 import java.util.ArrayList;
 
-import yumic.diverbob.love.multimediatest2.Entities.Music;
 import yumic.diverbob.love.multimediatest2.Entities.Video;
 import yumic.diverbob.love.multimediatest2.R;
 import yumic.diverbob.love.multimediatest2.Utils.LogHelper;
@@ -47,7 +46,7 @@ public class VideoPlayerActivity extends AppCompatActivity {
             nowNum = listNum;
             listCount = videoList.size();
         }
-
+        listCount = videoList.size();
         File file=new File(videoList.get(nowNum).getPath());
         MediaController mc=new MediaController(this);       // 创建一个MediaController对象
     //    mc.setPrevNextListeners(new P);
@@ -67,8 +66,22 @@ public class VideoPlayerActivity extends AppCompatActivity {
                 public void onCompletion(MediaPlayer mp) {
                     Toast.makeText(VideoPlayerActivity.this, "视频播放完毕！", Toast.LENGTH_SHORT).show();
                     //改为播放下一个视频
+                    video.stopPlayback();
+                    if(++nowNum>=listCount) nowNum-=listCount;
+                    File file=new File(videoList.get(nowNum).getPath());
+                    video.setVideoPath(file.getAbsolutePath());
+                    video.requestFocus();       // 设置VideoView获取焦点
+                    video.start();
                 }
             });
+
+            video.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
+                @Override
+                public void onPrepared(MediaPlayer mp) {
+
+                }
+            });
+
         }else{
             Toast.makeText(this, "要播放的视频文件不存在", Toast.LENGTH_SHORT).show();
         }

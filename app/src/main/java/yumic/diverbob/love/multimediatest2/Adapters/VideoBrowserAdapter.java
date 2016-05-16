@@ -1,4 +1,4 @@
-package yumic.diverbob.love.multimediatest2.Adapter;
+package yumic.diverbob.love.multimediatest2.Adapters;
 
 import android.content.Context;
 import android.content.Intent;
@@ -8,12 +8,11 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.CheckBox;
 import android.widget.TextView;
 
 import java.util.ArrayList;
 
-import yumic.diverbob.love.multimediatest2.Activity.VideoPlayerActivity;
+import yumic.diverbob.love.multimediatest2.Activities.VideoPlayerActivity;
 import yumic.diverbob.love.multimediatest2.Entities.Video;
 import yumic.diverbob.love.multimediatest2.R;
 import yumic.diverbob.love.multimediatest2.Utils.LogHelper;

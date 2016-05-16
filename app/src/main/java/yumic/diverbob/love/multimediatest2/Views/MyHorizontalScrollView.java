@@ -1,4 +1,4 @@
-package yumic.diverbob.love.multimediatest2;
+package yumic.diverbob.love.multimediatest2.Views;
 
 import android.content.Context;
 import android.graphics.Color;
@@ -14,7 +14,7 @@ import android.widget.LinearLayout;
 import java.util.HashMap;
 import java.util.Map;
 
-import yumic.diverbob.love.multimediatest2.Adapter.HorizontalScrollViewAdapter;
+import yumic.diverbob.love.multimediatest2.Adapters.HorizontalScrollViewAdapter;
 
 /**
  * Created by Oathkeeper on 2016/5/10.

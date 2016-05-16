@@ -19,7 +19,7 @@ public class ListDao {
 
     // 列定义
     private final String[] ORDER_COLUMNS = new String[] {"category", "listName"};
-    private final String[] ORDER_COLUMNS2 = new String[] {"category","filePath", "listName"};
+    private final String[] ORDER_COLUMNS2 = new String[] {"filePath", "listName"};
 
     private Context context;
     private DataBaseHelper dataBaseHelper;
@@ -141,7 +141,7 @@ public class ListDao {
     /**
      * 数据查询 提取特定列表中的所有文件路径
      */
-        public List<String> getMediaList(String category,String listName){
+        public ArrayList<String> getMediaList(String listName){
             SQLiteDatabase db = null;
             Cursor cursor = null;
 
@@ -151,17 +151,16 @@ public class ListDao {
             // select * from Orders where CustomName = 'Bor'
             cursor = db.query(dataBaseHelper.TABLE_NAME2,
                     ORDER_COLUMNS2,
-                    "listName = ? & category = ?",
-                    new String[] {listName,category},
+                    "listName = ? ",
+                    new String[] {listName},
                     null, null, null);
 
             if (cursor.getCount() > 0) {
-                List<String> list = new ArrayList<String>(cursor.getCount());
+                ArrayList<String> list = new ArrayList<String>(cursor.getCount());
                 while (cursor.moveToNext()) {
                     String order = cursor.getString(cursor.getColumnIndex("listName"));
-                    String order2 = cursor.getString(cursor.getColumnIndex("category"));
                     String order3 = cursor.getString(cursor.getColumnIndex("filePath"));
-                    Log.d("ListDao","类别："+order2+"ListName"+order+"  filePath:"+order3);
+                    Log.d("ListDao","ListName"+order+"  filePath:"+order3);
                     list.add(order);
                 }
                 return list;
@@ -186,7 +185,7 @@ public class ListDao {
     /**
      * 新增一条数据
      */
-    public boolean insertFile(String filePath,String listName,String category){
+    public boolean insertFile(String filePath,String listName){
         SQLiteDatabase db = null;
 
         try {
@@ -194,11 +193,8 @@ public class ListDao {
             db.beginTransaction();
 
             ContentValues contentValues = new ContentValues();
-            contentValues.put("category", category);
             contentValues.put("filePath", filePath);
             contentValues.put("listName", listName);
-
-
             db.insertOrThrow(DataBaseHelper.TABLE_NAME2, null, contentValues);
 
             db.setTransactionSuccessful();

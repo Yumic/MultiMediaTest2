@@ -1,18 +1,15 @@
-package yumic.diverbob.love.multimediatest2.Activity;
+package yumic.diverbob.love.multimediatest2.Activities;
 
 import android.app.Activity;
 import android.os.Bundle;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
-
-import com.bignerdranch.android.multiselector.MultiSelector;
 
 import java.util.List;
 
-import yumic.diverbob.love.multimediatest2.AbstructProvider;
-import yumic.diverbob.love.multimediatest2.Adapter.VideoBrowserAdapter;
+import yumic.diverbob.love.multimediatest2.Providers.AbstructProvider;
+import yumic.diverbob.love.multimediatest2.Adapters.VideoBrowserAdapter;
 import yumic.diverbob.love.multimediatest2.Entities.Video;
 import yumic.diverbob.love.multimediatest2.Providers.VideoProvider;
 import yumic.diverbob.love.multimediatest2.R;

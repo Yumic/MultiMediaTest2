@@ -6,7 +6,6 @@ import android.provider.MediaStore;
 
 import java.util.ArrayList;
 
-import yumic.diverbob.love.multimediatest2.AbstructProvider;
 import yumic.diverbob.love.multimediatest2.Entities.Video;
 
 /**

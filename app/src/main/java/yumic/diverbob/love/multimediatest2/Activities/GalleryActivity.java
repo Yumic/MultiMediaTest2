@@ -1,24 +1,18 @@
-package yumic.diverbob.love.multimediatest2.Activity;
+package yumic.diverbob.love.multimediatest2.Activities;
 
 import android.app.Activity;
 import android.graphics.Color;
-import android.net.Uri;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
 import android.widget.ImageView;
 
-import com.google.android.gms.appindexing.Action;
-import com.google.android.gms.appindexing.AppIndex;
-import com.google.android.gms.common.api.GoogleApiClient;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import yumic.diverbob.love.multimediatest2.Adapter.HorizontalScrollViewAdapter;
-import yumic.diverbob.love.multimediatest2.MyHorizontalScrollView;
+import yumic.diverbob.love.multimediatest2.Adapters.HorizontalScrollViewAdapter;
+import yumic.diverbob.love.multimediatest2.Views.MyHorizontalScrollView;
 import yumic.diverbob.love.multimediatest2.R;
 
 public class GalleryActivity extends Activity {

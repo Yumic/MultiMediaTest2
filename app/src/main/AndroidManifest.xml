@@ -13,7 +13,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".Activity.MainActivity"
+            android:name=".Activities.MainActivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
@@ -22,11 +22,15 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Activity.MusicBrowserActivity" />
-        <activity android:name=".Activity.VideoBrowserActivity" />
-
-        <activity android:name=".Activity.MusicPlayerActivity" />
-        <activity android:name=".Activity.VideoPlayerActivity"></activity>
+        <activity android:name=".Activities.MusicBrowserActivity" />
+        <activity android:name=".Activities.VideoBrowserActivity" />
+        <activity android:name=".Activities.MusicPlayerActivity" />
+        <activity android:name=".Activities.VideoPlayerActivity" />
+        <activity android:name=".Activities.GalleryActivity"></activity><!-- ATTENTION: This was auto-generated to add Google Play services to your project for
+     App Indexing.  See https://g.co/AppIndexing/AndroidStudio for more information. -->
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
     </application>
 
 </manifest>

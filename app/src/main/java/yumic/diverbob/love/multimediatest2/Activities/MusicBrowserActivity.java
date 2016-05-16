@@ -1,19 +1,13 @@
-package yumic.diverbob.love.multimediatest2.Activity;
+package yumic.diverbob.love.multimediatest2.Activities;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 
-import com.bignerdranch.android.multiselector.MultiSelector;
-
-import java.util.ArrayList;
-
-import yumic.diverbob.love.multimediatest2.Adapter.MusicBrowserAdapter;
+import yumic.diverbob.love.multimediatest2.Adapters.MusicBrowserAdapter;
 import yumic.diverbob.love.multimediatest2.Providers.MusicProvider;
 import yumic.diverbob.love.multimediatest2.R;
 import yumic.diverbob.love.multimediatest2.Utils.LogHelper;
@@ -36,7 +30,8 @@ public class MusicBrowserActivity extends Activity{
         Intent intent= getIntent();
         if(intent != null){
 
-            allListName  = intent.getStringArrayExtra("allListName");
+            Bundle bundle = intent.getExtras();
+            if(bundle.getStringArrayList("allListName")!=null) allListName  = bundle.getStringArrayList("allListName").toArray(new String[]{});
 
         }
 

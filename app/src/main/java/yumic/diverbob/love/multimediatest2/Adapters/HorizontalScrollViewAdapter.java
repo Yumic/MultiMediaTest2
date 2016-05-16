@@ -1,4 +1,4 @@
-package yumic.diverbob.love.multimediatest2.Adapter;
+package yumic.diverbob.love.multimediatest2.Adapters;
 
 import android.content.Context;
 import android.view.LayoutInflater;
